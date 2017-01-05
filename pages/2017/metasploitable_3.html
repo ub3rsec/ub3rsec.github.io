@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <title>Metasploitable_3_CTF</title>
+
+    <!-- Bootstrap Core CSS -->
+    <link href="../../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../../css/one-page-wonder.css" rel="stylesheet">
+
+    <!-- custom google font -->
+    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet"> 
+    
+    <!-- HandDrawn Button CSS -->
+    <!-- <link rel="stylesheet" href="css/button/normalize.css"> -->
+    <link rel="stylesheet" href="../../css/button/style.css">
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../../index.html">UB3RSEC</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="../main-page.html">Main</a>
+                    </li>
+                    <!-- <li>
+                        <a href="services.html">Services</a>
+                    </li> -->
+                    <li>
+                        <a href="../contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
+
+
+    <!-- Page Content -->
+    <div class="container">
+
+
+        <!-- First Featurette -->
+        <div class="featurette">
+            <!-- <img class="featurette-image img-circle img-responsive pull-right" src="http://placehold.it/500x500">  -->
+            <h2 class="featurette-heading">Metasploitable_3
+                <!-- <span class="text-muted">Will Catch Your Eye</span> -->
+            </h2>
+            <p class="lead">An Intentionally Vulnerable Machine for Exploit Testing</p>
+
+            <p class="lead">I really wanted to compete in the CTF competition, but i got caught up in some other stuff. Today (05-01-2017) i had plenty of free time at work. So I decided to go hunting for Metasploitable_3 flags :D. I'm posting some of the many ways to get shell on the system, how to get the flags and how to extract them. I believe there are 15 flags.</p>
+            
+            <p class="lead">Metasploitable3 is a free virtual machine that allows you to simulate attacks largely using Metasploit. It has been used by people in the security industry for a variety of reasons: such as training for network exploitation, exploit development, software testing, technical job interviews, sales demonstrations, or CTF junkies who are looking for kicks, etc :-)</p>
+            <p class="lead">Instructions on how to build the VM can be found <a href="https://community.rapid7.com/community/metasploit/blog/2016/11/15/test-your-might-with-the-shiny-new-metasploitable3">here</a> or <a href="https://github.com/rapid7/metasploitable3/wiki">here</a>.</p>
+            <p>Note: I'm using virtualbox with no guest tools installed, so no widescreen. :/</p>
+            
+            <h2 class="title text-center">NMAP Scan</h2><br>
+            <div align="center">
+                <video width="800" height="480" controls>
+                    <source src="../../videos/2017/metasploitable_3/msf3-nmap-scan-result.webm" type="video/webm">
+                </video>
+            </div>
+            <h2 class="title text-center">Getting shell : ElasticSearch-ManageEngine-WAMP</h2><br>
+            <div align="center">
+                <video width="800" height="480" controls>
+                    <source src="../../videos/2017/metasploitable_3/msf3-elasticsearch-manage_engine-wamp.webm" type="video/webm">
+                </video>
+            </div>
+            <h2 class="title text-center">Getting shell : Jetty Winstone (Jenkins)</h2><br>
+            <div align="center">
+                <video width="800" height="480" controls>
+                    <source src="../../videos/2017/metasploitable_3/msf3-elasticsearch-manage_engine-wamp.webm" type="video/webm">
+                </video>
+            </div>
+            <h2 class="title text-center">Finding Flags</h2><br>
+            <div align="center">
+                <video width="800" height="480" controls>
+                    <source src="../../videos/2017/metasploitable_3/finding_flags.webm" type="video/webm">
+                </video>
+            </div>
+            <h2 class="title text-center">Extracting Flags : four_of_clubs</h2><br>
+            <div align="center">
+                <video width="800" height="480" controls>
+                    <source src="../../videos/2017/metasploitable_3/four_of_clubs.webm" type="video/webm">
+                </video>
+            </div>
+            <h2 class="title text-center">Extracting Flags : jack_of_hearts</h2><br>
+            <div align="center">
+                <video width="800" height="480" controls>
+                    <source src="../../videos/2017/metasploitable_3/jack_of_hearts.webm" type="video/webm">
+                </video>
+            </div>
+            <h2 class="title text-center">Extracting Flags : king_of_diamonds</h2><br>
+            <div align="center">
+                <video width="800" height="480" controls>
+                    <source src="../../videos/2017/metasploitable_3/king_of_diamonds.webm" type="video/webm">
+                </video>
+            </div>
+            <h2 class="title text-center">Extracting Flags : seven_of_hearts</h2><br>
+            <div align="center">
+                <video width="800" height="480" controls>
+                    <source src="../../videos/2017/metasploitable_3/seven_of_hearts.webm" type="video/webm">
+                </video>
+            </div>
+            <h2 class="title text-center">Extracting Flags : seven_of_spades</h2><br>
+            <div align="center">
+                <video width="800" height="480" controls>
+                    <source src="../../videos/2017/metasploitable_3/seven_of_spades.webm" type="video/webm">
+                </video>
+            </div>
+            <h2 class="title text-center">Extracting Flags : six_of_diamonds</h2><br>
+            <div align="center">
+                <video width="800" height="480" controls>
+                    <source src="../../videos/2017/metasploitable_3/six_of_diamonds.webm" type="video/webm">
+                </video>
+            </div>
+            <h2 class="title text-center">Extracting Flags : ten_of_diamonds</h2><br>
+            <div align="center">
+                <video width="800" height="480" controls>
+                    <source src="../../videos/2017/metasploitable_3/ten_of_diamonds.webm" type="video/webm">
+                </video>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row">
+                <div class="footer text-center">
+                    <p>Copyright &copy; UB3RSiCK 2016</p>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+    <!-- /.container -->
+
+
+
+
+    <!-- jQuery -->
+    <script src="../../js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="../../js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
